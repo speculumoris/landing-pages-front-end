@@ -7,7 +7,7 @@ function AdminComments() {
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/v1/comments/all");
+            const res = await axios.get("http://localhost:8080/api/comments/all");
             setComments(res.data);
         } catch (err) {
             console.error("Yorumlar alınamadı:", err);
@@ -17,7 +17,7 @@ function AdminComments() {
     // Yorum onayla
     const handleApprove = async (id) => {
         try {
-            await axios.patch(`http://localhost:8080/api/v1/comments/${id}/approve`);
+            await axios.patch(`http://localhost:8080/api/comments/${id}/approve`);
             fetchComments();
         } catch (err) {
             console.error("Yorum onaylanamadı:", err);

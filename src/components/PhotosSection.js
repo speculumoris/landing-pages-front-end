@@ -16,7 +16,7 @@ function PhotosSection() {
 
 
     return (
-        <section id="photos" className="container my-5">
+        <section id="photos" className="container my-5" data-aos="fade-up">
             <h2 className="mb-4 fw-bold">📸 Yapılan İşlerden Fotoğraflar</h2>
 
             {photos.length > 0 ? (

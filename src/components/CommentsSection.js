@@ -17,7 +17,7 @@ function CommentsSection() {
     // Yorumları getir
     const fetchComments = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/v1/comments");
+            const res = await axios.get("http://localhost:8080/api/comments/approved");
             setComments(res.data);
         } catch (err) {
             console.error("Yorumlar alınamadı:", err);
@@ -32,7 +32,7 @@ function CommentsSection() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:8080/api/v1/comments", newComment);
+            await axios.post("http://localhost:8080/api/comments/add", newComment);
             setSuccess(true);
             setError(false);
             setNewComment({ fullName: "", serviceTitle: "", message: "" });
@@ -45,7 +45,7 @@ function CommentsSection() {
     };
 
     return (
-        <section id="comments" className="my-5">
+        <section id="comments" className="my-5" data-aos="fade-left" >
             <Container>
                 <h2 className="mb-4 fw-bold">💬 Müşteri Yorumları</h2>
 

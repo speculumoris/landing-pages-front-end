@@ -1,34 +1,58 @@
-import React from "react";
-import { BrowserRouter as Router, Routes, Route, Link } from "react-router-dom";
+import React, {useEffect} from "react";
+import {BrowserRouter as Router, Routes, Route, Link, Navigate} from "react-router-dom";
 import PhotosSection from "./components/PhotosSection";
 import ServicesSection from "./components/ServicesSection";
 import CommentsSection from "./components/CommentsSection";
+import Footer from "./components/Footer";
 import AdminPanel from "./components/AdminPanel";
+import WhatsappButton from "./components/WhatsappButton";
+import NavbarSection from "./components/NavbarSection";
+import AOS from "aos";
+import "aos/dist/aos.css";
+import HeroSection from "./components/HeroSection";
+import LoginPage from "./components/LoginComponent";
+import PrivateRoute from "./components/PrivateRoute";
+
 
 function App() {
+
+
+    useEffect(() => {
+        AOS.init({ duration: 1200, once: true });
+    }, []);
+
     return (
         <Router>
-            <nav className="navbar navbar-expand-lg navbar-light bg-light px-4 shadow-sm">
-                <Link className="navbar-brand fw-bold" to="/">LandingPage</Link>
-                <div className="collapse navbar-collapse">
-                    <ul className="navbar-nav ms-auto">
-                        <li className="nav-item">
-                            <Link className="nav-link" to="/admin">Admin Panel</Link>
-                        </li>
-                    </ul>
-                </div>
-            </nav>
-
+            <NavbarSection />
             <Routes>
-                <Route path="/" element={
-                    <>
-                        <PhotosSection />
-                        <ServicesSection />
-                        <CommentsSection />
-                    </>
-                } />
-                <Route path="/admin" element={<AdminPanel />} />
+                {/* 🔹 Herkese açık sayfa */}
+                <Route
+                    path="/"
+                    element={
+                        <>
+                            <HeroSection />
+                            <PhotosSection />
+                            <ServicesSection />
+                            <CommentsSection />
+                            <Footer />
+                        </>
+                    }
+                />
+
+                {/* 🔒 Login sayfası */}
+                <Route path="/login" element={<LoginPage />} />
+
+                {/* 🔐 Sadece giriş yapılmışsa görülebilen sayfa */}
+                <Route
+                    path="/admin"
+                    element={
+                        <PrivateRoute>
+                            <AdminPanel />
+                        </PrivateRoute>
+                    }
+                />
             </Routes>
+            <WhatsappButton />
         </Router>
     );
 }

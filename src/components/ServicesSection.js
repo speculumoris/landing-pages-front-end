@@ -13,7 +13,7 @@ function ServicesSection() {
     }, []);
 
     return (
-        <section id="services" className="my-5">
+        <section id="services" className="my-5" data-aos="flip-left" >
             <Container>
                 <h2 className="mb-4 fw-bold">🛠️ Hizmetlerimiz</h2>
 
