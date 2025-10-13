@@ -1,26 +1,51 @@
 import React from "react";
 import { Container } from "react-bootstrap";
+import { FaPhoneAlt, FaMapMarkerAlt, FaWhatsapp, FaFacebook, FaInstagram } from "react-icons/fa";
 
 function Footer() {
     return (
-        <footer id='contact' className="bg-dark text-light mt-5 py-4 ">
-            <Container  className="text-center">
-                <h6 className="fw-bold">Bayındır Teknik Servis</h6>
-                <p className="mb-1">Adres: Atatürk Mah. Örnek Sk. No:12, İstanbul</p>
-                <p className="mb-1">Telefon: <a href="tel:+905551112233" className="text-light">0555 111 22 33</a></p>
+        <footer id="contact" className="footer-section text-light pt-5 pb-3 mt-5">
+            <Container className="text-center">
+                {/* Logo / Başlık */}
+                <h5 className="fw-bold mb-3">🧰 Bayındır Teknik Servis</h5>
+
+                {/* İletişim Bilgileri */}
                 <p className="mb-1">
-                    WhatsApp:{" "}
+                    <FaMapMarkerAlt className="me-2 text-primary" />
+                    Atatürk Mah. Örnek Sk. No:12, İstanbul
+                </p>
+                <p className="mb-1">
+                    <FaPhoneAlt className="me-2 text-primary" />
+                    <a href="tel:+905551112233" className="footer-link">0555 111 22 33</a>
+                </p>
+                <p className="mb-2">
+                    <FaWhatsapp className="me-2 text-success" />
                     <a
                         href="https://wa.me/905551112233"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-success fw-bold"
+                        className="footer-link text-success fw-semibold"
                     >
-                        Bize Yazın
+                        Bize WhatsApp’tan Yazın
                     </a>
                 </p>
-                <hr className="border-light" />
-                <small>© 2025 Bayındır Teknik Servis | Tüm Hakları Saklıdır</small>
+
+                {/* Sosyal Medya */}
+                <div className="social-icons mb-3">
+                    <a href="#" className="social-link">
+                        <FaFacebook />
+                    </a>
+                    <a href="#" className="social-link">
+                        <FaInstagram />
+                    </a>
+                </div>
+
+                <hr className="footer-divider" />
+
+                {/* Telif */}
+                <small className="text-secondary">
+                    © 2025 <strong>Bayındır Teknik Servis</strong> | Tüm Hakları Saklıdır
+                </small>
             </Container>
         </footer>
     );
