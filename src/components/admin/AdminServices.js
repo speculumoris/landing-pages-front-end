@@ -5,9 +5,10 @@ import { Form, Button, Table, Row, Col } from "react-bootstrap";
 function AdminServices() {
     const [services, setServices] = useState([]);
     const [newService, setNewService] = useState({ title: "", description: "" });
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     const fetchServices = async () => {
-        const res = await axios.get("http://localhost:8080/api/services");
+        const res = await axios.get(`${host}/api/services`);
         setServices(res.data);
     };
 
@@ -17,13 +18,13 @@ function AdminServices() {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post("http://localhost:8080/api/services", newService);
+        await axios.post(`${host}/api/services`, newService);
         setNewService({ title: "", description: "" });
         fetchServices();
     };
 
     const handleDelete = async (id) => {
-        await axios.delete(`http://localhost:8080/api/services/${id}`);
+        await axios.delete(`${host}/api/services${id}`);
         fetchServices();
     };
 

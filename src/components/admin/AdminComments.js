@@ -4,10 +4,11 @@ import {Table, Button, Badge} from "react-bootstrap";
 
 function AdminComments() {
     const [comments, setComments] = useState([]);
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/comments/all");
+            const res = await axios.get(`${host}/api/comments/all`);
             setComments(res.data);
         } catch (err) {
             console.error("Yorumlar alınamadı:", err);
@@ -17,7 +18,7 @@ function AdminComments() {
     // Yorum onayla
     const handleApprove = async (id) => {
         try {
-            await axios.patch(`http://localhost:8080/api/comments/${id}/approve`);
+            await axios.patch(`${host}/api/comments/${id}/approve`);
             fetchComments();
         } catch (err) {
             console.error("Yorum onaylanamadı:", err);
@@ -30,7 +31,7 @@ function AdminComments() {
     // Yorum sil
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/comments/${id}`);
+            await axios.delete(`${host}/api/comments/${id}`);
             fetchComments();
         } catch (err) {
             console.error("Yorum silinemedi:", err);

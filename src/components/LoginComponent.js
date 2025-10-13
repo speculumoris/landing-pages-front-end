@@ -5,11 +5,12 @@ function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     const handleLogin = async (e) => {
         e.preventDefault();
         try {
-            const res = await axios.post("http://localhost:8080/api/auth/login", {
+            const res = await axios.post(`${host}/api/auth/login`, {
                 username,
                 password,
             });

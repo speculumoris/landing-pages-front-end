@@ -10,13 +10,14 @@ function CommentsSection() {
         serviceTitle: "",
         message: "",
     });
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
     const fetchComments = async () => {
         try {
-            const res = await axios.get("http://localhost:8080/api/comments/approved");
+            const res = await axios.get(`${host}/api/comments/approved`);
             setComments(res.data);
         } catch (err) {
             console.error("Yorumlar alınamadı:", err);
@@ -30,7 +31,7 @@ function CommentsSection() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post("http://localhost:8080/api/comments/add", newComment);
+            await axios.post(`${host}/api/comments/add`, newComment);
             setSuccess(true);
             setError(false);
             setNewComment({ fullName: "", serviceTitle: "", message: "" });

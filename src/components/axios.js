@@ -1,7 +1,7 @@
 import axios from "axios";
-
+const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 const api = axios.create({
-    baseURL: "http://localhost:8080",
+    baseURL: host,
 });
 
 api.interceptors.request.use((config) => {
