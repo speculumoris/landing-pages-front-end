@@ -30,7 +30,7 @@ function AdminComments() {
     // Yorum sil
     const handleDelete = async (id) => {
         try {
-            await axios.delete(`http://localhost:8080/api/v1/comments/${id}`);
+            await axios.delete(`http://localhost:8080/api/comments/${id}`);
             fetchComments();
         } catch (err) {
             console.error("Yorum silinemedi:", err);

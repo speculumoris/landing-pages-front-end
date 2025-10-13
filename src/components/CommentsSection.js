@@ -14,7 +14,6 @@ function CommentsSection() {
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
 
-    // Yorumları getir
     const fetchComments = async () => {
         try {
             const res = await axios.get("http://localhost:8080/api/comments/approved");
@@ -28,7 +27,6 @@ function CommentsSection() {
         fetchComments();
     }, []);
 
-    // Yorum gönderme
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
@@ -45,13 +43,15 @@ function CommentsSection() {
     };
 
     return (
-        <section id="comments" className="my-5" data-aos="fade-left" >
+        <section id="comments" className="comments-section" data-aos="fade-up">
             <Container>
-                <h2 className="mb-4 fw-bold">💬 Müşteri Yorumları</h2>
+                <h2 className="section-title">💬 Müşteri Yorumları</h2>
 
                 {/* Yorum Ekleme Formu */}
-                <Card className="p-4 mb-5 shadow-sm border-0">
-                    <h5 className="mb-3">📝 Yorum Bırak</h5>
+                <Card className="comment-form-card p-4 mb-5 shadow-sm">
+                    <h5 className="mb-3 fw-semibold text-primary">
+                        📝 Yorum Bırak
+                    </h5>
 
                     {success && <Alert variant="success">Yorum başarıyla gönderildi!</Alert>}
                     {error && <Alert variant="danger">Bir hata oluştu. Tekrar deneyin.</Alert>}
@@ -102,7 +102,7 @@ function CommentsSection() {
                                 </Form.Group>
                             </Col>
                             <Col xs={12} className="text-end">
-                                <Button variant="primary" type="submit">
+                                <Button variant="primary" type="submit" className="px-4">
                                     Gönder
                                 </Button>
                             </Col>
@@ -111,21 +111,25 @@ function CommentsSection() {
                 </Card>
 
                 {/* Yorum Listesi */}
-                <h4 className="mb-3">📋 Yapılan Yorumlar</h4>
+                <h4 className="fw-semibold mb-4 text-secondary">📋 Yapılan Yorumlar</h4>
                 <Row className="g-4">
                     {comments.length > 0 ? (
                         comments.map((comment) => (
                             <Col key={comment.id} xs={12} md={6} lg={4}>
-                                <Card className="shadow-sm border-0 h-100 comment-card">
+                                <Card className="comment-display-card h-100">
                                     <Card.Body>
                                         <div className="d-flex align-items-center mb-3">
-                                            <FaUserCircle size={36} className="text-primary me-2" />
+                                            <FaUserCircle size={40} className="text-primary me-2" />
                                             <div>
-                                                <h6 className="mb-0">{comment.fullName}</h6>
+                                                <h6 className="mb-0 fw-semibold text-dark">
+                                                    {comment.fullName}
+                                                </h6>
                                                 <small className="text-muted">{comment.serviceTitle}</small>
                                             </div>
                                         </div>
-                                        <Card.Text>"{comment.message}"</Card.Text>
+                                        <Card.Text className="text-secondary fst-italic">
+                                            “{comment.message}”
+                                        </Card.Text>
                                     </Card.Body>
                                 </Card>
                             </Col>

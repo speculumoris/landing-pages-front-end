@@ -4,30 +4,23 @@ import { Link } from "react-router-dom";
 
 function NavBarSection() {
     return (
-        <Navbar data-aos="fade-down" bg="light" expand="lg" fixed="top" className="shadow-sm py-3">
+        <Navbar bg="light" expand="lg" fixed="top" className="shadow-sm py-3">
             <Container>
-                {/* Sol taraf (marka) */}
-                <Navbar.Brand as={Link} to="/" className="fw-bold text-primary">
-                    🧰 Bayındır Teknik Servis
+                {/* Marka (Sol kısım) */}
+                <Navbar.Brand as={Link} to="/" className="fw-semibold">
+                    <i className="bi bi-tools me-1"></i> {/* küçük, profesyonel ikon */}
+                    Bayındır Teknik Servis
                 </Navbar.Brand>
 
                 <Navbar.Toggle aria-controls="navbarScroll" />
 
                 <Navbar.Collapse id="navbarScroll">
-                    <Nav className="ms-auto">
-                        <Nav.Link href="#photos" className="fw-medium">
-                            📸 Fotoğraflar
-                        </Nav.Link>
-                        <Nav.Link href="#services" className="fw-medium">
-                            🔧 Hizmetler
-                        </Nav.Link>
-                        <Nav.Link href="#comments" className="fw-medium">
-                            💬 Yorumlar
-                        </Nav.Link>
-                        <Nav.Link href="#contact" className="fw-medium">
-                            📞 İletişim
-                        </Nav.Link>
-                        <Nav.Link as={Link} to="/admin" className="fw-medium text-danger">
+                    <Nav className="ms-auto align-items-center">
+                        <Nav.Link href="#photos">📸 Fotoğraflar</Nav.Link>
+                        <Nav.Link href="#services">🔧 Hizmetler</Nav.Link>
+                        <Nav.Link href="#comments">💬 Yorumlar</Nav.Link>
+                        <Nav.Link href="#contact">📞 İletişim</Nav.Link>
+                        <Nav.Link as={Link} to="/admin" className="text-danger">
                             🔒 Admin Panel
                         </Nav.Link>
                     </Nav>
