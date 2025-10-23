@@ -6,9 +6,10 @@ function AdminPhotos() {
     const [photos, setPhotos] = useState([]);
     const [file, setFile] = useState(null);
     const [description, setDescription] = useState("");
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     const fetchPhotos = async () => {
-        const res = await axios.get("http://localhost:8080/api/photos");
+        const res = await axios.get(`${host}/api/photos`);
         setPhotos(res.data);
     };
 
@@ -21,14 +22,14 @@ function AdminPhotos() {
         const formData = new FormData();
         formData.append("file", file);
         formData.append("description", description);
-        await axios.post("http://localhost:8080/api/photos", formData);
+        await axios.post(`${host}/api/photos`, formData);
         setFile(null);
         setDescription("");
         fetchPhotos();
     };
 
     const handleDelete = async (url) => {
-        await axios.delete("http://localhost:8080/api/photos", {
+        await axios.delete(`${host}/api/photos`, {
             params: { url: url }
         });
         fetchPhotos();
@@ -66,7 +67,7 @@ function AdminPhotos() {
                         <Card className="shadow-sm">
                             <Card.Img
                                 variant="top"
-                                src={`http://localhost:8080/${p.url}`}
+                                src={`${host}/${p.url}`}
                                 style={{ height: "200px", objectFit: "cover" }}
                             />
                             <Card.Body>

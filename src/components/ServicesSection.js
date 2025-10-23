@@ -4,9 +4,10 @@ import { Card, Col, Container, Row } from "react-bootstrap";
 
 function ServicesSection() {
     const [services, setServices] = useState([]);
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
     useEffect(() => {
-        axios.get("http://localhost:8080/api/services")
+        axios.get(`${host}/api/services`)
             .then(res => setServices(res.data))
             .catch(err => console.error(err));
     }, []);

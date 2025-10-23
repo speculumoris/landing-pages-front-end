@@ -6,8 +6,10 @@ function PhotosSection() {
     const [photos, setPhotos] = useState([]);
     const [loading, setLoading] = useState(true);
 
+    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+
     useEffect(() => {
-        axios.get("http://localhost:8080/api/photos")
+        axios.get(`${host}/api/photos`)
             .then(res => {
                 setPhotos(res.data || []);
             })
@@ -38,7 +40,7 @@ function PhotosSection() {
                                 <div className="carousel-image-wrapper">
                                     <img
                                         className="d-block w-100 photo-image"
-                                        src={`http://localhost:8080/${photo.url}`}
+                                        src={`${host}/${photo.url}`}
                                         alt={photo.description || "Fotoğraf"}
                                     />
                                 </div>
