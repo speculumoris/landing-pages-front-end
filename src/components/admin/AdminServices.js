@@ -5,7 +5,7 @@ import { Form, Button, Table, Row, Col } from "react-bootstrap";
 function AdminServices() {
     const [services, setServices] = useState([]);
     const [newService, setNewService] = useState({ title: "", description: "" });
-    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+    const host = process.env.REACT_APP_BACKEND_CONNECTION || "http://localhost:8080";
 
     const fetchServices = useCallback(async () => {
         try {

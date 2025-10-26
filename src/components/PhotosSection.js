@@ -6,7 +6,7 @@ function PhotosSection() {
     const [photos, setPhotos] = useState([]);
     const [loading, setLoading] = useState(true);
 
-    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+    const host = process.env.REACT_APP_BACKEND_CONNECTION || "http://localhost:8080";
 
     useEffect(() => {
         axios.get(`${host}/api/photos`)
