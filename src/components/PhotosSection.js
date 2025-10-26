@@ -15,7 +15,7 @@ function PhotosSection() {
             })
             .catch(err => console.error(err))
             .finally(() => setLoading(false));
-    }, []);
+    }, [host]);
 
     return (
         <section id="photos" className="photos-section container text-center" data-aos="fade-up">

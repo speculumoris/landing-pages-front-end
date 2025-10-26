@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, {useState, useEffect, useCallback} from "react";
 import axios from "axios";
 import { Form, Button, Row, Col, Card } from "react-bootstrap";
 
@@ -8,32 +8,48 @@ function AdminPhotos() {
     const [description, setDescription] = useState("");
     const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
-    const fetchPhotos = async () => {
-        const res = await axios.get(`${host}/api/photos`);
-        setPhotos(res.data);
-    };
+    const fetchPhotos = useCallback(async () => {
+        try {
+            const res = await axios.get(`${host}/api/photos`);
+            setPhotos(res.data);
+        } catch (err) {
+            console.error("Fotoğraflar alınamadı:", err);
+        }
+    }, [host]);
+
 
     useEffect(() => {
-        fetchPhotos();
+        (async () => {
+            await fetchPhotos();
+        })();
     }, [fetchPhotos]);
 
     const handleUpload = async (e) => {
         e.preventDefault();
-        const formData = new FormData();
-        formData.append("file", file);
-        formData.append("description", description);
-        await axios.post(`${host}/api/photos`, formData);
-        setFile(null);
-        setDescription("");
-        fetchPhotos();
+        try {
+            const formData = new FormData();
+            formData.append("file", file);
+            formData.append("description", description);
+            await axios.post(`${host}/api/photos`, formData);
+            setFile(null);
+            setDescription("");
+            await fetchPhotos();
+        } catch (err) {
+            console.error("Fotoğraf yüklenemedi:", err);
+        }
     };
 
     const handleDelete = async (url) => {
-        await axios.delete(`${host}/api/photos`, {
-            params: { url: url }
-        });
-        fetchPhotos();
+        try {
+            await axios.delete(`${host}/api/photos`, {
+                params: { url },
+            });
+            await fetchPhotos();
+        } catch (err) {
+            console.error("Fotoğraf silinemedi:", err);
+        }
     };
+
     return (
         <>
             <Form onSubmit={handleUpload} className="mb-4">

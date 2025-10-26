@@ -7,27 +7,40 @@ function AdminServices() {
     const [newService, setNewService] = useState({ title: "", description: "" });
     const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
-    const fetchServices = async () => {
-        const res = await axios.get(`${host}/api/services`);
-        setServices(res.data);
-    };
+    const fetchServices = useCallback(async () => {
+        try {
+            const res = await axios.get(`${host}/api/services`);
+            setServices(res.data);
+        } catch (err) {
+            console.error("Hizmetler alınamadı:", err);
+        }
+    }, [host]);
 
     useEffect(() => {
-        fetchServices();
+        (async () => {
+            await fetchServices();
+        })();
     }, [fetchServices]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await axios.post(`${host}/api/services`, newService);
-        setNewService({ title: "", description: "" });
-        fetchServices();
+        try {
+            await axios.post(`${host}/api/services`, newService);
+            setNewService({ title: "", description: "" });
+            await fetchServices();
+        } catch (err) {
+            console.error("Hizmet eklenemedi:", err);
+        }
     };
 
     const handleDelete = async (id) => {
-        await axios.delete(`${host}/api/services${id}`);
-        fetchServices();
+        try {
+            await axios.delete(`${host}/api/services/${id}`);
+            await fetchServices();
+        } catch (err) {
+            console.error("Hizmet silinemedi:", err);
+        }
     };
-
     return (
         <>
             <Form onSubmit={handleSubmit} className="mb-4">
