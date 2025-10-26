@@ -14,7 +14,7 @@ function AdminServices() {
 
     useEffect(() => {
         fetchServices();
-    }, []);
+    }, [fetchServices]);
 
     const handleSubmit = async (e) => {
         e.preventDefault();

@@ -1,5 +1,5 @@
 import React, {useEffect} from "react";
-import {BrowserRouter as Router, Routes, Route, Link, Navigate} from "react-router-dom";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom";
 import PhotosSection from "./components/PhotosSection";
 import ServicesSection from "./components/ServicesSection";
 import CommentsSection from "./components/CommentsSection";

@@ -15,7 +15,6 @@ function AdminComments() {
         }
     };
 
-    // Yorum onayla
     const handleApprove = async (id) => {
         try {
             await axios.patch(`${host}/api/comments/${id}/approve`);
@@ -26,9 +25,8 @@ function AdminComments() {
     };
     useEffect(() => {
         fetchComments();
-    }, []);
+    }, [fetchComments]);
 
-    // Yorum sil
     const handleDelete = async (id) => {
         try {
             await axios.delete(`${host}/api/comments/${id}`);

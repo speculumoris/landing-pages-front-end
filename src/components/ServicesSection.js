@@ -10,7 +10,7 @@ function ServicesSection() {
         axios.get(`${host}/api/services`)
             .then(res => setServices(res.data))
             .catch(err => console.error(err));
-    }, []);
+    }, [host]);
 
     return (
         <section id="services" className="services-section" data-aos="fade-up">

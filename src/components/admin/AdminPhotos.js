@@ -15,7 +15,7 @@ function AdminPhotos() {
 
     useEffect(() => {
         fetchPhotos();
-    }, []);
+    }, [fetchPhotos]);
 
     const handleUpload = async (e) => {
         e.preventDefault();

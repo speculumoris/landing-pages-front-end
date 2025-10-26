@@ -6,10 +6,9 @@ function Footer() {
     return (
         <footer id="contact" className="footer-section text-light pt-5 pb-3 mt-5">
             <Container className="text-center">
-                {/* Logo / Başlık */}
-                <h5 className="fw-bold mb-3">🧰 Bayındır Teknik Servis</h5>
 
-                {/* İletişim Bilgileri */}
+                <h5 className="fw-bold mb-3">Teknik Servis</h5>
+
                 <p className="mb-1">
                     <FaMapMarkerAlt className="me-2 text-primary" />
                     Atatürk Mah. Örnek Sk. No:12, İstanbul
@@ -30,19 +29,17 @@ function Footer() {
                     </a>
                 </p>
 
-                {/* Sosyal Medya */}
                 <div className="social-icons mb-3">
-                    <a href="#" className="social-link">
+                    <a href="facebook" className="social-link">
                         <FaFacebook />
                     </a>
-                    <a href="#" className="social-link">
+                    <a href="instagram" className="social-link">
                         <FaInstagram />
                     </a>
                 </div>
 
                 <hr className="footer-divider" />
 
-                {/* Telif */}
                 <small className="text-secondary">
                     © 2025 <strong>Bayındır Teknik Servis</strong> | Tüm Hakları Saklıdır
                 </small>
