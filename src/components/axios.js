@@ -1,5 +1,5 @@
 import axios from "axios";
-const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+const host = process.env.REACT_APP_BACKEND_CONNECTION || "http://localhost:8080";
 const api = axios.create({
     baseURL: host,
 });

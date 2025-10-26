@@ -5,7 +5,7 @@ function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError] = useState("");
-    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+    const host = process.env.REACT_APP_BACKEND_CONNECTION || "http://localhost:8080";
 
     const handleLogin = async (e) => {
         e.preventDefault();

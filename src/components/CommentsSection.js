@@ -10,7 +10,7 @@ function CommentsSection() {
         serviceTitle: "",
         message: "",
     });
-    const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
+    const host = process.env.REACT_APP_BACKEND_CONNECTION || "http://localhost:8080";
 
     const [success, setSuccess] = useState(false);
     const [error, setError] = useState(false);
