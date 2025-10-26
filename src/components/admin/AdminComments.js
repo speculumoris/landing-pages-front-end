@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import axios from "axios";
 import {Table, Button, Badge} from "react-bootstrap";
 
@@ -6,26 +6,31 @@ function AdminComments() {
     const [comments, setComments] = useState([]);
     const host = process.env.BACKEND_CONNECTION || "http://localhost:8080";
 
-    const fetchComments = async () => {
+    const fetchComments = useCallback(async () => {
         try {
             const res = await axios.get(`${host}/api/comments/all`);
             setComments(res.data);
         } catch (err) {
             console.error("Yorumlar alınamadı:", err);
         }
-    };
+    }, [host]);
+
 
     const handleApprove = async (id) => {
         try {
             await axios.patch(`${host}/api/comments/${id}/approve`);
-            fetchComments();
+            await fetchComments();
         } catch (err) {
             console.error("Yorum onaylanamadı:", err);
         }
     };
+
     useEffect(() => {
-        fetchComments();
+        (async () => {
+            await fetchComments();
+        })();
     }, [fetchComments]);
+
 
     const handleDelete = async (id) => {
         try {
